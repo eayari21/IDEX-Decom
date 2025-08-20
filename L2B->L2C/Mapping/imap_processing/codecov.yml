@@ -1,0 +1,16 @@
+coverage:
+  status:
+    patch:
+      default:
+        target: 90%
+        paths:
+          - imap_processing/**/*.py
+    project:
+      default:
+        target: 90%
+        paths:
+          - imap_processing/**/*.py
+
+# Ignore coverage of fixtures
+ignore:
+  - "**/conftest.py"

@@ -1,0 +1,29 @@
+name: "Documentation Build"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number }}-${{ github.event.ref }}
+  cancel-in-progress: true
+on:
+- pull_request
+- release
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install .[doc]
+
+    - name: Build documentation
+      run: |
+        # SPHINXOPTS="-W --keep-going" is used to turn warnings into errors
+        # but keep going, so we don't fail on the first one.
+        make -C docs html SPHINXOPTS="-W --keep-going"

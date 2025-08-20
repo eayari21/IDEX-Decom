@@ -1,0 +1,147 @@
+[build-system]
+requires = ["poetry-core>=1.0.0,<2.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
+build-backend = "poetry_dynamic_versioning.backend"
+
+[tool.poetry]
+name = "imap-processing"
+# Gets updated dynamically by the poetry-dynamic-versioning plugin
+version = "0.0.0"
+description = "IMAP Science Operations Center Processing"
+authors = ["IMAP SDC Developers <imap-sdc@lists.lasp.colorado.edu>"]
+readme = "README.md"
+include = ["imap_processing/_version.py"]
+license = "MIT"
+keywords = ["IMAP", "SDC", "SOC", "Science Operations"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development",
+    "Topic :: Scientific/Engineering",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX",
+    "Operating System :: Unix",
+    "Operating System :: MacOS",
+]
+
+[tool.poetry.dependencies]
+astropy-healpix = ">=1.0"
+cdflib = "^1.3.1"
+imap-data-access = ">=0.10.1"
+python = ">=3.10,<4"
+space_packet_parser = "^5.0.1"
+spiceypy = ">=6.0.0"
+xarray = '>=2024.10.0'
+numpy = "<=3"
+sammi-cdf = "^1.0"
+scipy = "^1.13"
+
+# Optional dependencies
+numpydoc = {version="^1.5.0", optional=true}
+openpyxl = {version=">=3.0.7", optional=true}
+pandas = {version=">=2.0.0", optional=true}
+pre-commit = {version="^3.3.3", optional=true}
+pydata-sphinx-theme = {version="*", optional=true}
+pytest = {version=">=6.2.5", optional=true}
+pytest-cov = {version="^4.0.0", optional=true}
+ruff = {version="==0.2.1", optional=true}
+sphinx = {version="*", optional=true}
+sphinxcontrib-openapi = {version="^0.8.3", optional=true}
+mypy = {version="1.10.1", optional=true}
+requests = {version = "^2.32.3", optional = true}
+healpy = {version = "^1.18.0", optional = true}
+netcdf4 = {version ="^1.7.2",  optional = true}
+jupyter = "^1.1.1"
+jupyterlab = "^4.4.0"
+ipykernel = "^6.29.5"
+
+[tool.poetry.extras]
+dev = ["pre-commit", "ruff", "mypy"]
+doc = ["numpydoc", "pydata-sphinx-theme", "sphinx", "sphinxcontrib-openapi"]
+test = ["openpyxl", "pytest", "pytest-cov", "requests", "netcdf4"]
+tools = ["openpyxl", "pandas"]
+map_visualization = ["healpy"]
+
+[project.urls]
+homepage = "https://github.com/IMAP-Science-Operations-Center"
+repository = "https://github.com/IMAP-Science-Operations-Center/imap_processing"
+
+[tool.pytest.ini_options]
+testpaths = [
+  "imap_processing/tests",
+]
+addopts = "-ra"
+filterwarnings = [
+    "ignore:Converting non-nanosecond:UserWarning:cdflib",
+    "ignore:datetime.datetime.utcfromtimestamp:DeprecationWarning:cdflib",
+]
+markers = [
+    "external_kernel: marks tests as requiring external SPICE kernels (deselect with '-m \"not external_kernel\"')",
+    "external_test_data: marks tests as requiring external test data (deselect with '-m \"not external_test_data\"')",
+    "use_test_metakernel: Mark test to use a test metakernel"
+]
+
+
+[tool.ruff]
+target-version = "py39"
+lint.select = ["B", "D", "E", "F", "I", "N", "S", "W", "PL", "PT", "UP", "RUF"]
+# D104: Missing docstring in public package
+# PLR2004: Magic value in comparison
+# RUF200: pyproject missing field (poetry doesn't follow the spec)
+# PLR0915: too-many-statements error
+# RUF002: `−` (MINUS SIGN). Did you mean `-` (HYPHEN-MINUS) error
+lint.ignore = ["D104", "PLR2004", "RUF200", "S311", "PLR0915", "RUF002"]
+
+[tool.ruff.lint.per-file-ignores]
+# S603 unchecked input in subprocess call is fine in our tests
+# PT006 Wrong type passed to first argument of @pytest.mark.parametrize
+"*/tests/*" = ["D", "S101", "S603", "PT006"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.poetry.scripts]
+imap_cli = 'imap_processing.cli:main'
+imap_xtce = 'imap_processing.ccsds.excel_to_xtce:main'
+
+[tool.codespell]
+ignore-words-list = "livetime"
+
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+
+[tool.poetry-dynamic-versioning.files."imap_processing/_version.py"]
+persistent-substitution = true
+initial-content = """
+  # These version placeholders will be replaced later during substitution.
+  __version__ = "0.0.0"
+  __version_tuple__ = (0, 0, 0)
+"""
+
+[tool.numpydoc_validation]
+checks = ["all", #report on all checks, except the following
+    "EX01", # Ignore No examples section found
+    "SA01", # Ignore See Also section not found
+    "ES01", # Ignore No extended summary found
+    "RT02" ] # Ignore The first line of the Returns section
+exclude = ['__init__' ] # don't report on objects that match any of these regex
+
+[tool.mypy]
+disable_error_code = ['import-not-found', # Unable to locate module or package specified
+                'import-untyped', # The import lacks type information
+                'no-untyped-call', # Function calls are only made to functions that are fully typed
+                'type-arg', # Requires type arguments to be specified in list[] and dict[]
+                'union-attr', # Item "float" of "float | Any" has no attribute "reshape"
+              ]
+strict = true
+explicit_package_bases = true
+follow_imports = 'skip' #may want to remove
+exclude = ["tests"]
+packages = ["imap_processing" , "tools"]
+plugins = 'numpy.typing.mypy_plugin'
