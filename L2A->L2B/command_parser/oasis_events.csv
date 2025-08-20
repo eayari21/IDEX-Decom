@@ -1,0 +1,77 @@
+timeGps (yyyy-D-'T'HH:mm:ss),type,message,filename
+2025-96-T00:02:27,EM,2026/268-00:02:12.290 SCI state change: sciState16Dictionary(IDLE) ==&#62; sciState16Dictionary(ACQSETUP),f25_apr_05_23_57_35.event_messages
+2025-96-T00:02:28,EM,2026/268-00:02:14.950 SCI state change: sciState16Dictionary(ACQSETUP) ==&#62; sciState16Dictionary(ACQ),f25_apr_05_23_57_35.event_messages
+2025-97-T00:00:14,EM,2026/269-00:00:00.249 SCI state change: sciState16Dictionary(ACQ) ==&#62; sciState16Dictionary(CHILL),f25_apr_06_23_59_26.event_messages
+2025-97-T00:00:16,EM,2026/269-00:00:01.709 SCI state change: sciState16Dictionary(CHILL) ==&#62; sciState16Dictionary(ACQCLEANUP),f25_apr_06_23_59_26.event_messages
+2025-97-T00:00:18,EM,2026/269-00:00:03.709 SCI science activity completed: sciState16Dictionary(ACQ),f25_apr_06_23_59_26.event_messages
+2025-97-T00:00:19,EM,2026/269-00:00:03.709 SCI state change: sciState16Dictionary(ACQCLEANUP) ==&#62; sciState16Dictionary(IDLE),f25_apr_06_23_59_26.event_messages
+2025-97-T00:02:27,EM,2026/269-00:02:12.250 SCI state change: sciState16Dictionary(IDLE) ==&#62; sciState16Dictionary(ACQSETUP),f25_apr_06_23_59_26.event_messages
+2025-97-T00:02:28,EM,2026/269-00:02:14.910 SCI state change: sciState16Dictionary(ACQSETUP) ==&#62; sciState16Dictionary(ACQ),f25_apr_06_23_59_26.event_messages
+2025-97-T23:23:25,EM,2023/291-23:23:27.630 SCI state change: sciState16Dictionary(ACQ) ==&#62; sciState16Dictionary(CHILL),f25_apr_07_23_18_59.event_messages
+2025-97-T23:23:27,EM,2023/291-23:23:29.290 SCI state change: sciState16Dictionary(CHILL) ==&#62; sciState16Dictionary(ACQCLEANUP),f25_apr_07_23_18_59.event_messages
+2025-97-T23:23:31,EM,2023/291-23:23:31.290 SCI science activity completed: sciState16Dictionary(ACQ),f25_apr_07_23_18_59.event_messages
+2025-97-T23:23:32,EM,2023/291-23:23:31.290 SCI state change: sciState16Dictionary(ACQCLEANUP) ==&#62; sciState16Dictionary(IDLE),f25_apr_07_23_18_59.event_messages
+2025-99-T09:24:02,EM,2026/270-09:23:53.104 SCI state change: sciState16Dictionary(IDLE) ==&#62; sciState16Dictionary(ACQSETUP),f25_apr_09_09_23_05.event_messages
+2025-99-T09:24:03,EM,2026/270-09:23:55.764 SCI state change: sciState16Dictionary(ACQSETUP) ==&#62; sciState16Dictionary(ACQ),f25_apr_09_09_23_05.event_messages
+2025-100-T00:00:09,EM,2026/271-00:00:00.363 SCI state change: sciState16Dictionary(ACQ) ==&#62; sciState16Dictionary(CHILL),f25_apr_10_00_00_02.event_messages
+2025-100-T00:00:11,EM,2026/271-00:00:01.823 SCI state change: sciState16Dictionary(CHILL) ==&#62; sciState16Dictionary(ACQCLEANUP),f25_apr_10_00_00_02.event_messages
+2025-100-T00:00:13,EM,2026/271-00:00:03.823 SCI science activity completed: sciState16Dictionary(ACQ),f25_apr_10_00_00_02.event_messages
+2025-100-T00:00:14,EM,2026/271-00:00:03.823 SCI state change: sciState16Dictionary(ACQCLEANUP) ==&#62; sciState16Dictionary(IDLE),f25_apr_10_00_00_02.event_messages
+2025-100-T00:02:22,EM,2026/271-00:02:12.364 SCI state change: sciState16Dictionary(IDLE) ==&#62; sciState16Dictionary(ACQSETUP),f25_apr_10_00_00_02.event_messages
+2025-100-T00:02:26,EM,2026/271-00:02:15.024 SCI state change: sciState16Dictionary(ACQSETUP) ==&#62; sciState16Dictionary(ACQ),f25_apr_10_00_00_02.event_messages
+2025-101-T00:00:09,EM,2026/272-00:00:00.315 SCI state change: sciState16Dictionary(ACQ) ==&#62; sciState16Dictionary(CHILL),f25_apr_10_23_59_53.event_messages
+2025-101-T00:00:11,EM,2026/272-00:00:01.775 SCI state change: sciState16Dictionary(CHILL) ==&#62; sciState16Dictionary(ACQCLEANUP),f25_apr_10_23_59_53.event_messages
+2025-101-T00:00:13,EM,2026/272-00:00:03.775 SCI science activity completed: sciState16Dictionary(ACQ),f25_apr_10_23_59_53.event_messages
+2025-101-T00:00:14,EM,2026/272-00:00:03.775 SCI state change: sciState16Dictionary(ACQCLEANUP) ==&#62; sciState16Dictionary(IDLE),f25_apr_10_23_59_53.event_messages
+2025-101-T00:02:22,EM,2026/272-00:02:12.316 SCI state change: sciState16Dictionary(IDLE) ==&#62; sciState16Dictionary(ACQSETUP),f25_apr_10_23_59_53.event_messages
+2025-101-T00:02:23,EM,2026/272-00:02:14.976 SCI state change: sciState16Dictionary(ACQSETUP) ==&#62; sciState16Dictionary(ACQ),f25_apr_10_23_59_53.event_messages
+2025-101-T18:30:12,EM,2026/272-18:30:04.767 SCI state change: sciState16Dictionary(ACQ) ==&#62; sciState16Dictionary(CHILL),f25_apr_11_18_30_10.event_messages
+2025-101-T18:30:14,EM,2026/272-18:30:06.427 SCI state change: sciState16Dictionary(CHILL) ==&#62; sciState16Dictionary(ACQCLEANUP),f25_apr_11_18_30_10.event_messages
+2025-101-T18:30:21,EM,2026/272-18:30:10.427 SCI science activity completed: sciState16Dictionary(ACQ),f25_apr_11_18_30_10.event_messages
+2025-101-T18:30:22,EM,2026/272-18:30:10.427 SCI state change: sciState16Dictionary(ACQCLEANUP) ==&#62; sciState16Dictionary(IDLE),f25_apr_11_18_30_10.event_messages
+2025-101-T20:50:12,EM,2026/272-20:45:12.483 SCI state change: sciState16Dictionary(IDLE) ==&#62; sciState16Dictionary(ACQSETUP),f25_apr_11_20_41_54.event_messages
+2025-101-T20:50:13,EM,2026/272-20:45:15.143 SCI state change: sciState16Dictionary(ACQSETUP) ==&#62; sciState16Dictionary(ACQ),f25_apr_11_20_41_54.event_messages
+2025-102-T00:00:08,EM,2026/273-00:00:00.541 SCI state change: sciState16Dictionary(ACQ) ==&#62; sciState16Dictionary(CHILL),f25_apr_11_23_54_27.event_messages
+2025-102-T00:00:10,EM,2026/273-00:00:02.001 SCI state change: sciState16Dictionary(CHILL) ==&#62; sciState16Dictionary(ACQCLEANUP),f25_apr_11_23_54_27.event_messages
+2025-102-T00:00:14,EM,2026/273-00:00:04.001 SCI science activity completed: sciState16Dictionary(ACQ),f25_apr_11_23_54_27.event_messages
+2025-102-T00:00:15,EM,2026/273-00:00:04.001 SCI state change: sciState16Dictionary(ACQCLEANUP) ==&#62; sciState16Dictionary(IDLE),f25_apr_11_23_54_27.event_messages
+2025-102-T00:04:09,EM,2026/273-00:02:12.542 SCI state change: sciState16Dictionary(IDLE) ==&#62; sciState16Dictionary(ACQSETUP),f25_apr_11_23_54_27.event_messages
+2025-102-T00:04:10,EM,2026/273-00:02:15.202 SCI state change: sciState16Dictionary(ACQSETUP) ==&#62; sciState16Dictionary(ACQ),f25_apr_11_23_54_27.event_messages
+2025-102-T03:00:07,EM,2026/273-03:00:00.629 SCI state change: sciState16Dictionary(ACQ) ==&#62; sciState16Dictionary(CHILL),f25_apr_12_02_56_52.event_messages
+2025-102-T03:00:13,EM,2026/273-03:00:04.089 SCI science activity completed: sciState16Dictionary(ACQ),f25_apr_12_02_56_52.event_messages
+2025-102-T05:01:37,EM,2026/273-05:01:28.697 SCI state change: sciState16Dictionary(IDLE) ==&#62; sciState16Dictionary(ACQSETUP),f25_apr_12_04_57_16.event_messages
+2025-102-T05:01:38,EM,2026/273-05:01:31.357 SCI state change: sciState16Dictionary(ACQSETUP) ==&#62; sciState16Dictionary(ACQ),f25_apr_12_04_57_16.event_messages
+2025-103-T00:00:09,EM,2026/274-00:00:00.549 SCI state change: sciState16Dictionary(ACQ) ==&#62; sciState16Dictionary(CHILL),f25_apr_12_23_51_05.event_messages
+2025-103-T00:00:11,EM,2026/274-00:00:02.008 SCI state change: sciState16Dictionary(CHILL) ==&#62; sciState16Dictionary(ACQCLEANUP),f25_apr_12_23_51_05.event_messages
+2025-103-T00:00:15,EM,2026/274-00:00:04.008 SCI science activity completed: sciState16Dictionary(ACQ),f25_apr_12_23_51_05.event_messages
+2025-103-T00:00:16,EM,2026/274-00:00:04.009 SCI state change: sciState16Dictionary(ACQCLEANUP) ==&#62; sciState16Dictionary(IDLE),f25_apr_12_23_51_05.event_messages
+2025-103-T00:02:21,EM,2026/274-00:02:12.550 SCI state change: sciState16Dictionary(IDLE) ==&#62; sciState16Dictionary(ACQSETUP),f25_apr_13_00_01_13.event_messages
+2025-103-T00:02:22,EM,2026/274-00:02:15.210 SCI state change: sciState16Dictionary(ACQSETUP) ==&#62; sciState16Dictionary(ACQ),f25_apr_13_00_01_13.event_messages
+2025-103-T20:35:27,EM,2026/274-20:35:19.488 SCI state change: sciState16Dictionary(IDLE) ==&#62; sciState16Dictionary(ACQSETUP),f25_apr_13_20_26_33.event_messages
+2025-103-T20:35:39,EM,2026/274-20:35:22.148 SCI state change: sciState16Dictionary(ACQSETUP) ==&#62; sciState16Dictionary(ACQ),f25_apr_13_20_26_33.event_messages
+2025-103-T20:54:46,EM,2026/274-20:54:38.487 SCI state change: sciState16Dictionary(ACQ) ==&#62; sciState16Dictionary(CHILL),f25_apr_13_20_46_49.event_messages
+2025-103-T20:54:50,EM,2026/274-20:54:43.947 SCI science activity completed: sciState16Dictionary(ACQ),f25_apr_13_20_46_49.event_messages
+2025-106-T00:01:53,EM,2025/106-00:01:47.100 SCI state change: sciState16Dictionary(IDLE) ==&#62; sciState16Dictionary(ACQSETUP),f25_apr_15_23_58_54.event_messages
+2025-106-T00:01:54,EM,2025/106-00:01:49.740 SCI state change: sciState16Dictionary(ACQSETUP) ==&#62; sciState16Dictionary(ACQ),f25_apr_15_23_58_54.event_messages
+2025-106-T00:12:18,EM,2025/106-00:12:12.089 SCI state change: sciState16Dictionary(ACQ) ==&#62; sciState16Dictionary(CHILL),f25_apr_16_00_09_02.event_messages
+2025-106-T00:12:19,EM,2025/106-00:12:13.928 SCI state change: sciState16Dictionary(CHILL) ==&#62; sciState16Dictionary(ACQCLEANUP),f25_apr_16_00_09_02.event_messages
+2025-106-T00:12:25,EM,2025/106-00:12:17.928 SCI science activity completed: sciState16Dictionary(ACQ),f25_apr_16_00_09_02.event_messages
+2025-106-T00:12:30,EM,2025/106-00:12:17.928 SCI state change: sciState16Dictionary(ACQCLEANUP) ==&#62; sciState16Dictionary(IDLE),f25_apr_16_00_09_02.event_messages
+2025-108-T20:03:19,EM,2025/290-05:40:32.048 SCI state change: sciState16Dictionary(IDLE) ==&#62; sciState16Dictionary(ACQSETUP),f25_apr_18_20_00_19.event_messages
+2025-108-T20:03:24,EM,2025/290-05:40:34.588 SCI state change: sciState16Dictionary(ACQSETUP) ==&#62; sciState16Dictionary(ACQ),f25_apr_18_20_00_19.event_messages
+2025-108-T20:08:12,EM,2025/290-05:45:25.043 SCI state change: sciState16Dictionary(ACQ) ==&#62; sciState16Dictionary(CHILL),f25_apr_18_20_00_19.event_messages
+2025-108-T20:08:13,EM,2025/290-05:45:26.782 SCI state change: sciState16Dictionary(CHILL) ==&#62; sciState16Dictionary(ACQCLEANUP),f25_apr_18_20_00_19.event_messages
+2025-108-T20:08:19,EM,2025/290-05:45:30.782 SCI science activity completed: sciState16Dictionary(ACQ),f25_apr_18_20_00_19.event_messages
+2025-108-T20:08:22,EM,2025/290-05:45:30.782 SCI state change: sciState16Dictionary(ACQCLEANUP) ==&#62; sciState16Dictionary(IDLE),f25_apr_18_20_00_19.event_messages
+2025-109-T16:57:00,EM,2025/109-16:56:56.090 SCI state change: sciState16Dictionary(IDLE) ==&#62; sciState16Dictionary(ACQSETUP),f25_apr_19_16_47_33.event_messages
+2025-109-T16:57:03,EM,2025/109-16:56:58.730 SCI state change: sciState16Dictionary(ACQSETUP) ==&#62; sciState16Dictionary(ACQ),f25_apr_19_16_47_33.event_messages
+2025-109-T17:07:12,EM,2025/109-17:07:07.080 SCI state change: sciState16Dictionary(ACQ) ==&#62; sciState16Dictionary(CHILL),f25_apr_19_16_57_41.event_messages
+2025-109-T17:07:15,EM,2025/109-17:07:08.920 SCI state change: sciState16Dictionary(CHILL) ==&#62; sciState16Dictionary(ACQCLEANUP),f25_apr_19_16_57_41.event_messages
+2025-109-T17:07:21,EM,2025/109-17:07:12.920 SCI science activity completed: sciState16Dictionary(ACQ),f25_apr_19_16_57_41.event_messages
+2025-109-T17:07:24,EM,2025/109-17:07:12.920 SCI state change: sciState16Dictionary(ACQCLEANUP) ==&#62; sciState16Dictionary(IDLE),f25_apr_19_16_57_41.event_messages
+2025-111-T21:18:40,EM,2025/290-05:33:10.036 SCI state change: sciState16Dictionary(IDLE) ==&#62; sciState16Dictionary(ACQSETUP),f25_apr_21_21_10_03.event_messages
+2025-111-T21:18:46,EM,2025/290-05:33:12.575 SCI state change: sciState16Dictionary(ACQSETUP) ==&#62; sciState16Dictionary(ACQ),f25_apr_21_21_10_03.event_messages
+2025-111-T21:23:52,EM,2025/290-05:38:21.030 SCI state change: sciState16Dictionary(ACQ) ==&#62; sciState16Dictionary(CHILL),f25_apr_21_21_20_11.event_messages
+2025-111-T21:23:52,EM,2025/290-05:38:22.769 SCI state change: sciState16Dictionary(CHILL) ==&#62; sciState16Dictionary(ACQCLEANUP),f25_apr_21_21_20_11.event_messages
+2025-111-T21:23:59,EM,2025/290-05:38:26.769 SCI science activity completed: sciState16Dictionary(ACQ),f25_apr_21_21_20_11.event_messages
+2025-111-T21:24:01,EM,2025/290-05:38:26.769 SCI state change: sciState16Dictionary(ACQCLEANUP) ==&#62; sciState16Dictionary(IDLE),f25_apr_21_21_20_11.event_messages
