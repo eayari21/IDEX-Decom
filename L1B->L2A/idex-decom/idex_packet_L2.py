@@ -995,6 +995,8 @@ class IDEXEvent:
 
                 if k[1] in ['Target L', 'Target H', 'Ion Grid']:  # Fit target and ion grid signals
                     param, param_cov, sig_amp = FitTargetSignal(self.lstime, v)
+                    t_rise = param[5]
+                    
                     create_dataset_if_not_exists(h, f"/{k[0]}/Analysis/{k[1]}FitParams", data=np.array(param))
                     create_dataset_if_not_exists(h, f"/{k[0]}/Analysis/{k[1]}MassEstimate", data=sig_amp)
                     create_dataset_if_not_exists(h, f"/{k[0]}/Analysis/{k[1]}ImpactCharge", data=sig_amp)
