@@ -27,10 +27,27 @@ import numpy as np
 
 from datetime import datetime, timedelta, timezone
 
-from scipy.optimize import curve_fit
+from scipy.optimize import curve_fit, root_scalar
 from scipy.signal import detrend, butter, filtfilt, find_peaks
 from scipy.integrate import quad
 from scipy.special import erfc
+from collections import defaultdict
+
+
+
+
+# || LASP software
+from lasp_packets import xtcedef  # Gavin Medley's xtce UML implementation
+from lasp_packets import parser  # Gavin Medley's constant bitstream implementation
+from rice_decode import idex_rice_Decode
+from time2mass import time2mass
+import cdflib.cdfwrite as cdfwrite
+import cdflib.cdfread as cdfread
+
+# Load fit parameters for rise time and yield functions
+_base_dir = os.path.dirname(os.path.abspath(__file__))
+t_rise_params = pd.read_csv(os.path.join(_base_dir, "t_rise.csv"), skiprows=1, header=None).values.flatten()[:8]
+yield_params = pd.read_csv(os.path.join(_base_dir, "yield.csv"), skiprows=1, header=None).values.flatten()[:8]
 
 # %% GENERAL LINEAR FUNCTION DEFINITION
 # || Used to subtract an overall linear background of noise
@@ -45,14 +62,6 @@ def LinearFit(Time, a, b):
 
 def SineFit(Time, c, d, e):
     return c*np.sin(d*Time + e)
-
-# || LASP software
-from lasp_packets import xtcedef  # Gavin Medley's xtce UML implementation
-from lasp_packets import parser  # Gavin Medley's constant bitstream implementation
-from rice_decode import idex_rice_Decode
-from time2mass import time2mass
-import cdflib.cdfwrite as cdfwrite
-import cdflib.cdfread as cdfread
 
 # %%IDEX ION GRID FUNCTION DEFINITON
 def IDEXIonGrid(x, P0, P1, P4, P5, P6):
@@ -241,6 +250,8 @@ def FitTargetSignal(time, targetAmp):
 
 
     return(param, param_cov, sig_amp)
+
+sig_amp_cache = defaultdict(dict)
 
 
 # ||
@@ -874,6 +885,8 @@ class IDEXEvent:
             'Target L': 1.58e1
         }
 
+        ion_content = 0
+
         for k, v in waveforms.items():
             # Convert degrees to radians for RA and Dec
             ra_values = np.deg2rad(np.random.uniform(0, 15, size=1))  # e.g., 100 sample points
@@ -924,6 +937,10 @@ class IDEXEvent:
                 h.create_dataset(f"/{k[0]}/{k[1]}", data=transformed_data)
 
                 if k[1] in ['TOF H']:  # Calculate mass scale from TOF H arrays (best quality of the 3 gain stages)
+                    ion_count = np.sum(transformed_data)
+                    create_dataset_if_not_exists(h, f"/{k[0]}/Analysis/IonContent", data=np.array([ion_count]))
+
+
                     stretch, shift, mass_scale = time2mass(transformed_data, self.hstime)
                     create_dataset_if_not_exists(h, f"/{k[0]}/Mass", data=np.array(mass_scale))
                     peaks, _ = find_peaks(transformed_data, prominence=.01)
@@ -994,12 +1011,54 @@ class IDEXEvent:
 
 
                 if k[1] in ['Target L', 'Target H', 'Ion Grid']:  # Fit target and ion grid signals
-                    param, param_cov, sig_amp = FitTargetSignal(self.lstime, v)
-                    t_rise = param[5]
-                    
+                    try:
+                        param, param_cov, sig_amp = FitTargetSignal(self.lstime, v)
+                    except:
+                        param, param_cov, sig_amp = [0, 0, 0, 0, 0], 0, 0
+                    print(f"Number of params = {len(param)}")
+                    t_rise = param[3]
+
+                    logA_t = np.log10(t_rise_params[0])
+                    a1_t, a2_t, a3_t, vb_t, vc_t, k_t, m_t = t_rise_params[1:]
+                    try:
+                        root = root_scalar(lambda lv: log_smooth_powerlaw(lv, logA_t, a1_t, a2_t, a3_t, vb_t, vc_t, k_t, m_t) - np.log10(t_rise), bracket=[-1, 2])
+                        v_est = 10 ** root.root
+                    except Exception:
+                        v_est = 0.0
+                    logA_y = np.log10(yield_params[0])
+                    a1_y, a2_y, a3_y, vb_y, vc_y, k_y, m_y = yield_params[1:]
+                    yield_val = 10 ** log_smooth_powerlaw(np.log10(v_est), logA_y, a1_y, a2_y, a3_y, vb_y, vc_y, k_y, m_y)
+                    mass_est = sig_amp / yield_val
+
                     create_dataset_if_not_exists(h, f"/{k[0]}/Analysis/{k[1]}FitParams", data=np.array(param))
                     create_dataset_if_not_exists(h, f"/{k[0]}/Analysis/{k[1]}MassEstimate", data=sig_amp)
                     create_dataset_if_not_exists(h, f"/{k[0]}/Analysis/{k[1]}ImpactCharge", data=sig_amp)
+                    create_dataset_if_not_exists(h, f"/{k[0]}/Analysis/{k[1]}VelocityEstimate", data=v_est)
+                    create_dataset_if_not_exists(h, f"/{k[0]}/Analysis/{k[1]}MassEstimate", data=mass_est)
+
+                    event_id = k[0]
+                    chan     = k[1]
+                    sig_amp_cache[event_id][chan] = float(sig_amp)
+
+                    ion_grid_amp  = sig_amp_cache[event_id].get('Ion Grid')
+                    target_h_amp  = sig_amp_cache[event_id].get('Target H')
+
+                    if (ion_grid_amp is not None) and (target_h_amp is not None):
+                        # 1) IonTargetCollectionEfficiency = Ion Grid sig_amp / Target H sig_amp
+                        ion_target_eff = np.nan if target_h_amp == 0 else (ion_grid_amp / target_h_amp)
+                        create_dataset_if_not_exists(h, f"/{event_id}/Analysis/IonTargetCollectionEfficiency", data=ion_target_eff)
+
+                        # 2) TofIonGridCollectionEfficiency = ion_count / Ion Grid sig_amp
+                        #    ion_count can be a scalar or per-event mapping; handle both cases.
+                        try:
+                            icount = ion_count[event_id] if isinstance(ion_count, dict) else ion_count
+                        except NameError:
+                            # fallback if stored on self
+                            ic = getattr(self, 'ion_count', np.nan)
+                            icount = ic.get(event_id, np.nan) if isinstance(ic, dict) else ic
+
+                        tof_ion_grid_eff = np.nan if (ion_grid_amp is None or ion_grid_amp == 0) else (icount / ion_grid_amp)
+                        create_dataset_if_not_exists(h, f"/{event_id}/Analysis/TofIonGridCollectionEfficiency", data=tof_ion_grid_eff)
 
                 try:
                     # Ensure self.hstime and transformed_data are the same length
